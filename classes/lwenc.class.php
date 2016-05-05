@@ -128,13 +128,15 @@
 				
 				return $returnString;
 			}
+            
+            return false;
 		}
 		
 		public function debug() {
 			// Quickly debug what currently is set as private member variables
-			echo ($this->method . '<br/>');
-			echo ($this->size . '<br/>');
-			echo ($this->cipher . '<br/>');
+			echo ('<p id="method">' . $this->method . '<br/>');
+			echo ('<p id="size">' . $this->size . '<br/>');
+			echo ('<p id="cipher">' . $this->cipher . '<br/>');
 		}
 
 		private function generateBasic($size) {

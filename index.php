@@ -58,7 +58,7 @@ $enc = new Lwenc();
                     ?>
                 </div>
                 <div class="col-md-12">
-                    <h2>Test encryption of string</h2>
+                    <h2>PHP encryption of string</h2>
                     <p>String: testString</p>
                     <p>
                     <?php
@@ -68,7 +68,7 @@ $enc = new Lwenc();
                     </p>
                 </div>
                 <div class="col-md-12">
-                    <h2>Test decryption of string</h2>
+                    <h2>PHP decryption of string</h2>
                     <p><?php echo ($string); ?></p>
                     <p>
                     <?php
@@ -76,11 +76,14 @@ $enc = new Lwenc();
                     ?>
                     </p>
                 </div>
+                <div id="js-results" style="margin-top: 100px;"></div>
             </div>
         </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="./js/autoloader.js"></script>
+    <script src="./js/custom.js"></script>
 </body>
 </html>
