@@ -58,7 +58,7 @@ $enc = new Lwenc();
                     ?>
                 </div>
                 <div class="col-md-12">
-                    <h2>PHP encryption of string</h2>
+                    <h4>PHP encryption of string</h4>
                     <p>String: testString</p>
                     <p>
                     <?php
@@ -68,7 +68,7 @@ $enc = new Lwenc();
                     </p>
                 </div>
                 <div class="col-md-12">
-                    <h2>PHP decryption of string</h2>
+                    <h4>PHP decryption of string</h4>
                     <p><?php echo ($string); ?></p>
                     <p>
                     <?php
