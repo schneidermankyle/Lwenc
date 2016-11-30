@@ -32,44 +32,48 @@
 		private $method = "basic";
 		private $cipher;
 
-		function __construct($size = 0) {
-			// Set some default options
-			date_default_timezone_set('America/Los_Angeles');
-			
+		function __construct($size = 0) {		
 			// If we pass in -1 it means to not create the cipher
 			if ($size != -1) {
 				// If arguements, set them
 				$size = ($size > 0) ? $size : $this->size;
 				// Then call our create cipher command
 				
-				$this->createCipher($size);
+				$this->CreateCipher($size);
 			}
 		}
 
 		// Quick setters
-		public function setSize($size) {
+		public function SetSize($size) {
 			// Set the size of cipher
 			if ($size > 0) {
 				$this->size = $size;
 			}
 		}
 
-		public function setCipherType($type) {
+		public function SetCipherType($type) {
 			// Set the cipher type for creating new ciphers
 			if ($type) {
 				$this->method = $type;
 			}
 		}
 
-		public function setCipher($cipher = null) {
+		public function SetCipher($cipher = null) {
 			// Set the ciper
-			if ($cipher) {
-				$this->cipher = $cipher;
-			}
+			if (!isset($cipher) || !$cipher || !is_string($cipher))
+				return false; 
+
+			$this->cipher = $cipher;
+			return true;
+		}
+
+		// Getter
+		public function GetCipher() {
+			return $this->cipher;
 		}
 
 		// Userful functions
-		public function createCipher($size = 0, $method = null) {
+		public function CreateCipher($size = 0, $method = null) {
 			$size = ($size > 0) ? $size : $this->size;
 			$method = ($method) ? $method : $this->method;
 			
@@ -84,7 +88,7 @@
 			}
 		}
 
-		public function encrypt($key = null, $cipher = null) {
+		public function Encode($key = null, $cipher = null) {
 			// Will encrypt the key using the set cipher
 			$cipher = ($cipher) ? $cipher : $this->cipher;
 			$size = ($cipher) ? strlen($cipher) : $this->size;
@@ -109,12 +113,12 @@
 			return false;
 		}
 
-		public function decrypt($key = null, $cipher = null) {
+		public function Decode($key = null, $cipher = null) {
 			// If a key is passed in, use that key, otherwise attempt to decode using stored cipher
 			$cipher = ($cipher) ? $cipher : $this->cipher;
 			$size = ($cipher) ? strlen($cipher) : $this->size;
 			
-			if ($key) {
+			if ($key && is_string($cipher)) {
 				$key = base64_decode($key);
 				$keyArray = explode('-', $key);
 				$length = count($keyArray);
@@ -132,11 +136,11 @@
             return false;
 		}
 		
-		public function debug() {
+		public function Debug() {
 			// Quickly debug what currently is set as private member variables
-			echo ('<p id="method">' . $this->method . '<br/>');
-			echo ('<p id="size">' . $this->size . '<br/>');
-			echo ('<p id="cipher">' . $this->cipher . '<br/>');
+			echo ('<p id="method">' . $this->method . '</p>');
+			echo ('<p id="size">' . $this->size . '</p>');
+			echo ('<p id="cipher">' . $this->cipher . '</p>');
 		}
 
 		private function generateBasic($size) {

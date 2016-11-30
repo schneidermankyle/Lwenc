@@ -80,32 +80,41 @@ function Lwenc() {
     ////// Setters //////
     
     // Sets the size of our cipher
-    this.setSize = function(size) {
+    this.SetSize = function(size) {
         if (size > 0)
             _size = size;
     };
     
     // Sets the the encryption type
-    this.setCipherType = function(type) {
+    this.SetCipherType = function(type) {
         if (type)
            _method = type; 
     };
     
     // Sets the cipher if external is generated
-    this.setCipher = function(cipher = null) {
-        if (cipher)
-            _cipher = cipher;
+    this.SetCipher = function(cipher = null) {
+        if (cipher === undefined || typeof(cipher) !== "string")
+            return false;
+
+        _cipher = cipher;
+        return true;
     };
     
     // This is just public access for _createCipher3
-    this.createCipher = function(size, method) {
+    this.CreateCipher = function(size, method) {
         _createCipher(size, method);
     };
     
+    ////// Getters //////
+    this.GetCipher = function() {
+        return _cipher;
+    };
+
+
     ////// Useful functions //////
     
     // Encrypts a given key and optionally accepts a cipher
-    this.encrypt = function(key = null, cipher = null) {
+    this.Encode = function(key = null, cipher = null) {
         cipher = (cipher) ? cipher : _cipher;
         var size = (cipher) ? cipher.length : _size;
         
@@ -128,11 +137,11 @@ function Lwenc() {
     };
     
     // Decrypts the provided key given a valid cipher
-    this.decrypt = function(key = null, cipher = null) {
+    this.Decode = function(key = null, cipher = null) {
         cipher = (cipher) ? cipher : _cipher;
         size = (cipher) ? cipher.length : _size;
         
-        if (key) {
+        if (key && typeof(cipher) === "string") {
             key = window.atob(key);
             
             var keyArray = key.split('-'),
@@ -150,10 +159,10 @@ function Lwenc() {
         }
         
         return false;
-    }
+    };
     
     // Quick function to private variables 
-    this.debug = function(debugType) {
+    this.Debug = function(debugType = 'console') {
         switch (debugType) {
             case 'console':
                 console.log(_method);

@@ -54,25 +54,25 @@ $enc = new Lwenc();
                     <h1>Lwenc Class Testing</h1>
                     <p>Testing Cipher Creation</p>
                     <?php
-                       $enc->debug();
+                       $enc->Debug();
                     ?>
                 </div>
                 <div class="col-md-12">
-                    <h4>PHP encryption of string</h4>
+                    <h4>PHP encoding a string</h4>
                     <p>String: testString</p>
                     <p>
                     <?php
-                        $string = $enc->encrypt("testString");
+                        $string = $enc->Encode("testString");
                         echo ($string);
                     ?>
                     </p>
                 </div>
                 <div class="col-md-12">
-                    <h4>PHP decryption of string</h4>
+                    <h4>PHP decoding a string</h4>
                     <p><?php echo ($string); ?></p>
                     <p>
                     <?php
-                        echo ($enc->decrypt($string));
+                        echo ($enc->Decode($string));
                     ?>
                     </p>
                 </div>
